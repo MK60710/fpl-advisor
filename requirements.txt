@@ -1,0 +1,7 @@
+requests
+pandas
+pulp<4.0
+beautifulsoup4
+rapidfuzz
+python-dotenv
+pytest
