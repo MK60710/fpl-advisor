@@ -1,3 +1,4 @@
+import os
 import socket
 
 import pytest
@@ -7,6 +8,9 @@ from agents.recommend import _compute_data_mode, build_recommendation
 
 
 def _has_network():
+    # CI sets SKIP_LIVE_TESTS so a flaky FPL API can't fail the build; run locally for the live checks
+    if os.environ.get("SKIP_LIVE_TESTS"):
+        return False
     try:
         socket.create_connection(("fantasy.premierleague.com", 443), timeout=3).close()
         return True

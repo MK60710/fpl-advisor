@@ -1,3 +1,4 @@
+import os
 import socket
 from unittest.mock import patch
 
@@ -22,6 +23,9 @@ FAKE_CSV = (
 
 
 def _has_network():
+    # CI sets SKIP_LIVE_TESTS so a flaky FPL API can't fail the build; run locally for the live checks
+    if os.environ.get("SKIP_LIVE_TESTS"):
+        return False
     try:
         socket.create_connection(("raw.githubusercontent.com", 443), timeout=3).close()
         return True
