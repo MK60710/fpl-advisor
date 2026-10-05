@@ -10,6 +10,8 @@ It picks a Fantasy Premier League squad for me every gameweek. It looks at the o
 
 It only recommends. It never logs into an FPL account or makes changes for you, so you still enter the picks yourself on the FPL site.
 
+**This week's pick, on a pitch: [mk60710.github.io/fpl-advisor](https://mk60710.github.io/fpl-advisor/)**
+
 ## What you get
 
 A markdown report for each gameweek. Here's the top of a real one ([full report](reports/GW6.md)):
@@ -54,6 +56,8 @@ python3 -m agents.run_weekly
 
 It's built to run once a day (`run-daily.sh` is what I schedule). Most days it does nothing, and it only builds a new report when the next deadline is a few days out.
 
+To refresh the website after a new report, run `python3 scripts/build_site.py`. It turns the newest report into `docs/latest.json`, which the page in `docs/` reads.
+
 ## Tests
 
 ```
@@ -77,10 +81,12 @@ agents/
   report.py            writes the markdown report
   run_weekly.py        daily entry point with the deadline check
 docs/
+  index.html           the GitHub Pages site (reads latest.json)
   SPEC.md              the original spec
   framework.md         every rule and formula, plus the changelog
   construction-plan.md how it was built, step by step
 reports/               one report per gameweek
+scripts/build_site.py  turns the newest report into docs/latest.json
 tests/
 ```
 

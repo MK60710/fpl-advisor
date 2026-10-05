@@ -1,0 +1,197 @@
+{
+  "gameweek": 6,
+  "deadline": "2026-10-10 10:00 UTC",
+  "cost": 100.0,
+  "budget": 100.0,
+  "bank": 0.0,
+  "data_mode": "official_only",
+  "data_note": "Source(s) unavailable this run: fantasyfootballfix, fantasyfootballscout, bbc_gossip. This report is based on official FPL data only where research signal was missing.",
+  "xi": [
+    {
+      "name": "Scott",
+      "club": "BOU",
+      "pos": "MID",
+      "price": 6.1,
+      "pp": 7.04,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Schade",
+      "club": "BRE",
+      "pos": "MID",
+      "price": 6.2,
+      "pp": 8.88,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Groß",
+      "club": "BHA",
+      "pos": "MID",
+      "price": 5.8,
+      "pp": 11.95,
+      "tag": "C",
+      "slot": null
+    },
+    {
+      "name": "Tarkowski",
+      "club": "EVE",
+      "pos": "DEF",
+      "price": 6.1,
+      "pp": 9.11,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Bogle",
+      "club": "LEE",
+      "pos": "DEF",
+      "price": 4.6,
+      "pp": 7.65,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "A.Becker",
+      "club": "LIV",
+      "pos": "GKP",
+      "price": 5.5,
+      "pp": 6.14,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Isak",
+      "club": "LIV",
+      "pos": "FWD",
+      "price": 9.1,
+      "pp": 7.62,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Gvardiol",
+      "club": "MCI",
+      "pos": "DEF",
+      "price": 5.7,
+      "pp": 6.91,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Haaland",
+      "club": "MCI",
+      "pos": "FWD",
+      "price": 15.6,
+      "pp": 9.66,
+      "tag": "VC",
+      "slot": null
+    },
+    {
+      "name": "B.Fernandes",
+      "club": "MUN",
+      "pos": "MID",
+      "price": 11.9,
+      "pp": 7.84,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Hall",
+      "club": "NEW",
+      "pos": "DEF",
+      "price": 5.3,
+      "pp": 7.42,
+      "tag": null,
+      "slot": null
+    }
+  ],
+  "bench": [
+    {
+      "name": "Tzolakis",
+      "club": "HUL",
+      "pos": "GKP",
+      "price": 4.7,
+      "pp": 5.94,
+      "tag": null,
+      "slot": "GK"
+    },
+    {
+      "name": "Davis",
+      "club": "IPS",
+      "pos": "DEF",
+      "price": 4.0,
+      "pp": 5.8,
+      "tag": null,
+      "slot": "1"
+    },
+    {
+      "name": "Yalcouyé",
+      "club": "BHA",
+      "pos": "MID",
+      "price": 4.5,
+      "pp": 4.44,
+      "tag": null,
+      "slot": "2"
+    },
+    {
+      "name": "Simms",
+      "club": "COV",
+      "pos": "FWD",
+      "price": 4.9,
+      "pp": 4.2,
+      "tag": null,
+      "slot": "3"
+    }
+  ],
+  "risk_flags": "None — every starter shows 100% chance of playing with no negative research signal.",
+  "watchlist": [
+    {
+      "name": "Yalcouyé",
+      "club": "BHA",
+      "pos": "MID",
+      "age": 20,
+      "price": 4.5,
+      "xgi90": 0.73,
+      "owned": 4.0
+    },
+    {
+      "name": "Manzambi",
+      "club": "AVL",
+      "pos": "MID",
+      "age": 20,
+      "price": 5.9,
+      "xgi90": 0.62,
+      "owned": 0.4
+    },
+    {
+      "name": "Gonzalo",
+      "club": "FUL",
+      "pos": "FWD",
+      "age": 22,
+      "price": 6.0,
+      "xgi90": 0.61,
+      "owned": 3.9
+    },
+    {
+      "name": "Andrés",
+      "club": "BHA",
+      "pos": "MID",
+      "age": 21,
+      "price": 5.5,
+      "xgi90": 0.53,
+      "owned": 0.0
+    },
+    {
+      "name": "Emersonn",
+      "club": "IPS",
+      "pos": "FWD",
+      "age": 22,
+      "price": 5.5,
+      "xgi90": 0.49,
+      "owned": 3.5
+    }
+  ],
+  "report": "reports/GW6.md"
+}
