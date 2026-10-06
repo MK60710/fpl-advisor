@@ -60,6 +60,20 @@ section.how h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-si
 .steps li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--mute)}
 .steps li b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
 .steps li::before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font:700 12px 'Archivo',sans-serif;margin-bottom:6px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.tabs button{font:600 14px 'Archivo',sans-serif;color:var(--mute);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 14px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.p .pp.done{background:var(--accent)}
+.track{margin-top:30px}
+.track h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.6rem;margin:0 0 4px}
+.track p.sub{margin:0 0 12px;color:var(--mute);font-size:14px;max-width:70ch}
+.tr-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-variant-numeric:tabular-nums}
+.tr-table th,.tr-table td{padding:9px 14px;text-align:right;border-top:1px solid var(--line);font-size:14.5px}
+.tr-table th{border-top:none;color:var(--mute);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em}
+.tr-table td:first-child,.tr-table th:first-child{text-align:left}
+.tr-table .win{color:#2f8a4f;font-weight:600} .tr-table .loss{color:var(--accent);font-weight:600}
+.tr-wrap{overflow-x:auto}
 footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--mute);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 a{color:var(--accent);text-underline-offset:3px}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
@@ -78,6 +92,8 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     </div>
     <div class="stats" id="stats"></div>
   </header>
+
+  <div class="tabs" id="tabs" role="group" aria-label="Gameweek"></div>
 
   <p class="note" id="note" hidden></p>
 
@@ -99,6 +115,12 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     </div>
   </div>
 
+  <section class="track" id="track" hidden>
+    <h2>Track record</h2>
+    <p class="sub">How each pick actually scored, next to what the model projected and the average FPL manager that week. Real points come from the official FPL API, with the captain doubled. Bench auto-subs aren't counted.</p>
+    <div class="tr-wrap"><table class="tr-table"><thead><tr><th>Gameweek</th><th>Projected</th><th>Actual</th><th>Average manager</th><th>vs average</th></tr></thead><tbody id="trBody"></tbody></table></div>
+  </section>
+
   <section class="how">
     <h2>How it works</h2>
     <ol class="steps">
@@ -111,7 +133,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   </section>
 
   <footer>
-    <span>Built by <a href="https://mihirkolakaluri.com">Mihir Kolakaluri</a> · <a href="https://github.com/MK60710/fpl-advisor">source on GitHub</a> · <a id="reportLink" href="https://github.com/MK60710/fpl-advisor/tree/main/reports">full report</a></span>
+    <span>Built by <a href="https://mihirkolakaluri.com">Mihir Kolakaluri</a> · <span id="updated"></span> · <a href="https://github.com/MK60710/fpl-advisor">source on GitHub</a> · <a id="reportLink" href="https://github.com/MK60710/fpl-advisor/tree/main/reports">full report</a></span>
     <span>Not affiliated with the Premier League or Fantasy Premier League.</span>
   </footer>
 </div>
@@ -121,44 +143,71 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
   var POS = ['GKP', 'DEF', 'MID', 'FWD'];
   var CLUB_COLORS = { ARS:'#d1201f', AVL:'#6b1d3c', BOU:'#c8102e', BRE:'#d0021b', BHA:'#0057b8', BUR:'#6c1d45', CHE:'#034694', COV:'#59a8de', CRY:'#1b458f', EVE:'#003399',
     FUL:'#222222', HUL:'#f5a12d', IPS:'#3a64a3', LEE:'#ffcd00', LIV:'#c8102e', MCI:'#6cabdd', MUN:'#da291c', NEW:'#241f20', NFO:'#dd0000', SUN:'#eb172b', TOT:'#132257', WHU:'#7a263a', WOL:'#fdb913' };
+  var $ = function(id){ return document.getElementById(id); };
   function el(tag, cls, html){ var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
   function shirt(club, gk){ var c = gk ? '#2d2d2d' : (CLUB_COLORS[club] || '#55625a');
     return '<svg class="shirt" viewBox="0 0 40 40" aria-hidden="true"><path d="M13 4l-9 6 4 8 4-2v20h16V16l4 2 4-8-9-6c-1 3-4 5-7 5s-6-2-7-5z" fill="' + c + '" stroke="rgba(0,0,0,.35)" stroke-width="1"/></svg>'; }
   function fmtDeadline(s){ var d = new Date(s.replace(' UTC', 'Z').replace(' ', 'T')); if (isNaN(d)) return s;
     return d.toLocaleString(undefined, { weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit' }); }
-  fetch('latest.json', { cache: 'no-cache' }).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }).then(function(d){
-    document.getElementById('eyebrow').textContent = 'Fantasy Premier League · Gameweek ' + d.gameweek;
-    document.getElementById('title').textContent = 'Gameweek ' + d.gameweek + ' pick';
+  function getJSON(u){ return fetch(u, { cache: 'no-cache' }).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }); }
+
+  function render(d){
+    var done = d.actual_total != null;
+    $('eyebrow').textContent = 'Fantasy Premier League · Gameweek ' + d.gameweek;
+    $('title').textContent = 'Gameweek ' + d.gameweek + (done ? ' result' : ' pick');
     document.title = 'FPL Advisor · GW' + d.gameweek;
-    var total = d.xi.reduce(function(a, p){ return a + p.pp * (p.tag === 'C' ? 2 : 1); }, 0);
-    document.getElementById('stats').innerHTML =
-      '<div class="stat"><b>' + total.toFixed(1) + '</b><span>projected points (captain doubled)</span></div>' +
-      '<div class="stat"><b>£' + d.cost.toFixed(1) + 'm</b><span>of £' + d.budget.toFixed(1) + 'm budget</span></div>' +
-      '<div class="stat"><b>' + esc(fmtDeadline(d.deadline)) + '</b><span>deadline (your time)</span></div>';
-    if (d.data_mode && d.data_mode !== 'full'){ var n = document.getElementById('note'); n.textContent = 'This week’s run used official FPL data only, because some expert sites were unavailable. The pick still follows every rule.'; n.hidden = false; }
-    var rows = document.getElementById('rows');
+    var stats = '<div class="stat"><b>' + d.projected_total.toFixed(1) + '</b><span>projected points (captain doubled)</span></div>';
+    if (done) stats += '<div class="stat"><b>' + d.actual_total + '</b><span>actually scored' + (d.average_manager != null ? ' (average manager ' + d.average_manager + ')' : '') + '</span></div>';
+    stats += '<div class="stat"><b>£' + d.cost.toFixed(1) + 'm</b><span>of £' + d.budget.toFixed(1) + 'm budget</span></div>';
+    if (!done) stats += '<div class="stat"><b>' + esc(fmtDeadline(d.deadline)) + '</b><span>deadline (your time)</span></div>';
+    $('stats').innerHTML = stats;
+    var n = $('note');
+    if (d.data_mode && d.data_mode !== 'full'){ n.textContent = 'This week’s run used official FPL data only, because some expert sites were unavailable. The pick still follows every rule.'; n.hidden = false; } else n.hidden = true;
+    var rows = $('rows'); rows.innerHTML = '';
     POS.slice().reverse().forEach(function(pos){
       var r = el('div', 'row');
       d.xi.filter(function(p){ return p.pos === pos; }).forEach(function(p){
         var c = el('div', 'p'); c.setAttribute('title', p.name + ' (' + p.club + ', ' + p.pos + ') £' + p.price.toFixed(1) + 'm');
+        var line = p.actual != null ? (p.pp.toFixed(1) + ' proj · ' + p.actual + ' pts') : (p.pp.toFixed(1) + ' pts · £' + p.price.toFixed(1) + 'm');
         c.innerHTML = shirt(p.club, pos === 'GKP') + (p.tag ? '<span class="badge' + (p.tag === 'VC' ? ' vc' : '') + '">' + p.tag + '</span>' : '') +
-          '<span class="nm">' + esc(p.name) + '</span><span class="pp">' + p.pp.toFixed(1) + ' pts · £' + p.price.toFixed(1) + 'm</span>';
+          '<span class="nm">' + esc(p.name) + '</span><span class="pp' + (p.actual != null ? ' done' : '') + '">' + line + '</span>';
         r.appendChild(c);
       });
       rows.appendChild(r);
     });
     var cap = d.xi.filter(function(p){ return p.tag === 'C'; })[0], vc = d.xi.filter(function(p){ return p.tag === 'VC'; })[0];
-    document.getElementById('cap').innerHTML =
-      (cap ? '<div><span>Captain (points doubled)</span><b>' + esc(cap.name) + '</b><span>' + cap.club + ' · ' + cap.pp.toFixed(2) + ' projected</span></div>' : '') +
-      (vc ? '<div><span>Vice-captain</span><b>' + esc(vc.name) + '</b><span>' + vc.club + ' · ' + vc.pp.toFixed(2) + ' projected</span></div>' : '');
-    var bench = document.getElementById('bench');
-    d.bench.forEach(function(p){ bench.appendChild(el('li', null, '<span class="k">' + (p.slot === 'GK' ? 'GK' : p.slot) + '</span><span class="n">' + esc(p.name) + '<small>' + p.club + ' · ' + p.pos + '</small></span><span class="v">' + p.pp.toFixed(1) + ' pts</span>')); });
-    var watch = document.getElementById('watch');
+    function capCard(label, p){ return '<div><span>' + label + '</span><b>' + esc(p.name) + '</b><span>' + p.club + ' · ' + p.pp.toFixed(2) + ' projected' + (p.actual != null ? ', scored ' + p.actual : '') + '</span></div>'; }
+    $('cap').innerHTML = (cap ? capCard('Captain (points doubled)', cap) : '') + (vc ? capCard('Vice-captain', vc) : '');
+    var bench = $('bench'); bench.innerHTML = '';
+    d.bench.forEach(function(p){ bench.appendChild(el('li', null, '<span class="k">' + (p.slot === 'GK' ? 'GK' : p.slot) + '</span><span class="n">' + esc(p.name) + '<small>' + p.club + ' · ' + p.pos + '</small></span><span class="v">' + (p.actual != null ? p.actual + ' pts' : p.pp.toFixed(1) + ' proj') + '</span>')); });
+    var watch = $('watch'); watch.innerHTML = '';
     d.watchlist.forEach(function(p){ watch.appendChild(el('li', null, '<span class="k">' + p.pos + '</span><span class="n">' + esc(p.name) + '<small>' + p.club + ' · age ' + p.age + '</small></span><span class="v">' + p.owned.toFixed(1) + '% owned</span>')); });
-    document.getElementById('reportLink').href = 'https://github.com/MK60710/fpl-advisor/blob/main/' + d.report;
+    $('reportLink').href = 'https://github.com/MK60710/fpl-advisor/blob/main/' + d.report;
+  }
+
+  function show(gw, idx){
+    [].forEach.call($('tabs').children, function(b){ b.setAttribute('aria-pressed', +b.dataset.gw === gw ? 'true' : 'false'); });
+    return getJSON('data/gw' + gw + '.json').then(render);
+  }
+
+  getJSON('data/index.json').then(function(idx){
+    var gws = idx.gameweeks;
+    gws.forEach(function(g){ var b = el('button', null, 'GW' + g.gameweek); b.type = 'button'; b.dataset.gw = g.gameweek; b.addEventListener('click', function(){ show(g.gameweek); }); $('tabs').appendChild(b); });
+    var played = gws.filter(function(g){ return g.actual_total != null; });
+    if (played.length){
+      var body = $('trBody');
+      played.forEach(function(g){ var diff = g.average_manager != null ? g.actual_total - g.average_manager : null;
+        body.appendChild(el('tr', null, '<td>GW' + g.gameweek + '</td><td>' + g.projected_total.toFixed(1) + '</td><td>' + g.actual_total + '</td><td>' + (g.average_manager != null ? g.average_manager : '—') + '</td><td class="' + (diff >= 0 ? 'win' : 'loss') + '">' + (diff == null ? '—' : (diff >= 0 ? '+' : '') + diff) + '</td>')); });
+      var tp = played.reduce(function(a, g){ return a + g.projected_total; }, 0), ta = played.reduce(function(a, g){ return a + g.actual_total; }, 0), tv = played.reduce(function(a, g){ return a + (g.average_manager || 0); }, 0);
+      body.appendChild(el('tr', null, '<td><b>Total</b></td><td><b>' + tp.toFixed(1) + '</b></td><td><b>' + ta + '</b></td><td><b>' + tv + '</b></td><td class="' + (ta - tv >= 0 ? 'win' : 'loss') + '"><b>' + (ta - tv >= 0 ? '+' : '') + (ta - tv) + '</b></td>'));
+      $('track').hidden = false;
+    }
+    var u = new Date(idx.updated.replace('Z', ':00Z'));
+    $('updated').textContent = 'updated ' + (isNaN(u) ? idx.updated : u.toLocaleDateString(undefined, { month:'short', day:'numeric', year:'numeric' }));
+    return show(gws[gws.length - 1].gameweek);
   }).catch(function(){
-    document.getElementById('rows').innerHTML = '<p class="err" style="color:#fff;padding:20px">Couldn’t load this week’s pick. The latest report is on GitHub.</p>';
+    $('rows').innerHTML = '<p class="err" style="color:#fff;padding:20px">Couldn’t load this week’s pick. The latest report is on GitHub.</p>';
   });
 })();
 </script>

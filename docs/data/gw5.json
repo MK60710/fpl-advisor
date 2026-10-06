@@ -1,0 +1,232 @@
+{
+  "gameweek": 5,
+  "deadline": "2026-09-18 17:30 UTC",
+  "cost": 100.0,
+  "budget": 100.0,
+  "bank": 0.0,
+  "data_mode": null,
+  "xi": [
+    {
+      "name": "Saka",
+      "club": "ARS",
+      "pos": "MID",
+      "price": 9.5,
+      "pp": 7.6,
+      "tag": null,
+      "slot": null,
+      "actual": 2,
+      "minutes": 80
+    },
+    {
+      "name": "Tavernier",
+      "club": "BOU",
+      "pos": "MID",
+      "price": 6.1,
+      "pp": 6.82,
+      "tag": null,
+      "slot": null,
+      "actual": 2,
+      "minutes": 74
+    },
+    {
+      "name": "Carvalho",
+      "club": "BRE",
+      "pos": "MID",
+      "price": 5.0,
+      "pp": 7.8,
+      "tag": "VC",
+      "slot": null,
+      "actual": 6,
+      "minutes": 3
+    },
+    {
+      "name": "De Cuyper",
+      "club": "BHA",
+      "pos": "DEF",
+      "price": 4.9,
+      "pp": 7.03,
+      "tag": null,
+      "slot": null,
+      "actual": 6,
+      "minutes": 90
+    },
+    {
+      "name": "Tarkowski",
+      "club": "EVE",
+      "pos": "DEF",
+      "price": 6.1,
+      "pp": 6.49,
+      "tag": null,
+      "slot": null,
+      "actual": 14,
+      "minutes": 90
+    },
+    {
+      "name": "Tzolakis",
+      "club": "HUL",
+      "pos": "GKP",
+      "price": 4.6,
+      "pp": 6.3,
+      "tag": null,
+      "slot": null,
+      "actual": 6,
+      "minutes": 90
+    },
+    {
+      "name": "Bogle",
+      "club": "LEE",
+      "pos": "DEF",
+      "price": 4.6,
+      "pp": 6.94,
+      "tag": null,
+      "slot": null,
+      "actual": 5,
+      "minutes": 66
+    },
+    {
+      "name": "Gvardiol",
+      "club": "MCI",
+      "pos": "DEF",
+      "price": 5.7,
+      "pp": 7.4,
+      "tag": null,
+      "slot": null,
+      "actual": 4,
+      "minutes": 90
+    },
+    {
+      "name": "Haaland",
+      "club": "MCI",
+      "pos": "FWD",
+      "price": 15.6,
+      "pp": 9.2,
+      "tag": "C",
+      "slot": null,
+      "actual": 6,
+      "minutes": 90
+    },
+    {
+      "name": "B.Fernandes",
+      "club": "MUN",
+      "pos": "MID",
+      "price": 12.0,
+      "pp": 7.59,
+      "tag": null,
+      "slot": null,
+      "actual": 2,
+      "minutes": 90
+    },
+    {
+      "name": "Gibbs-White",
+      "club": "NFO",
+      "pos": "MID",
+      "price": 8.0,
+      "pp": 7.63,
+      "tag": null,
+      "slot": null,
+      "actual": 2,
+      "minutes": 90
+    }
+  ],
+  "bench": [
+    {
+      "name": "Pope",
+      "club": "NEW",
+      "pos": "GKP",
+      "price": 4.9,
+      "pp": 3.68,
+      "tag": null,
+      "slot": "GK",
+      "actual": 0,
+      "minutes": 0
+    },
+    {
+      "name": "Giles",
+      "club": "HUL",
+      "pos": "DEF",
+      "price": 4.0,
+      "pp": 5.76,
+      "tag": null,
+      "slot": "1",
+      "actual": 0,
+      "minutes": 90
+    },
+    {
+      "name": "Kusi-Asare",
+      "club": "FUL",
+      "pos": "FWD",
+      "price": 4.5,
+      "pp": 5.2,
+      "tag": null,
+      "slot": "2",
+      "actual": 0,
+      "minutes": 0
+    },
+    {
+      "name": "J.Angulo",
+      "club": "SUN",
+      "pos": "FWD",
+      "price": 4.5,
+      "pp": 5.2,
+      "tag": null,
+      "slot": "3",
+      "actual": 0,
+      "minutes": 0
+    }
+  ],
+  "risk_flags": "None — every starter shows 100% chance of playing with no negative research signal.",
+  "watchlist": [
+    {
+      "name": "Yalcouyé",
+      "club": "BHA",
+      "pos": "MID",
+      "age": 20,
+      "price": 4.5,
+      "xgi90": 0.66,
+      "owned": 4.0
+    },
+    {
+      "name": "Emersonn",
+      "club": "IPS",
+      "pos": "FWD",
+      "age": 22,
+      "price": 5.5,
+      "xgi90": 0.6,
+      "owned": 3.1
+    },
+    {
+      "name": "Gonzalo",
+      "club": "FUL",
+      "pos": "FWD",
+      "age": 22,
+      "price": 6.0,
+      "xgi90": 0.5,
+      "owned": 3.6
+    },
+    {
+      "name": "Enciso",
+      "club": "IPS",
+      "pos": "MID",
+      "age": 22,
+      "price": 5.5,
+      "xgi90": 0.46,
+      "owned": 0.8
+    },
+    {
+      "name": "Palacios",
+      "club": "FUL",
+      "pos": "MID",
+      "age": 21,
+      "price": 5.4,
+      "xgi90": 0.44,
+      "owned": 0.2
+    }
+  ],
+  "report": "reports/GW5.md",
+  "projected_total": 90.0,
+  "finished": true,
+  "actual_total": 61,
+  "captain_scored_for": "Haaland",
+  "average_manager": 48,
+  "highest": 126
+}
