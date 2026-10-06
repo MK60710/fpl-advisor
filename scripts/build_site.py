@@ -124,6 +124,18 @@ def build():
         gw = data["gameweek"]
         out = os.path.join(DATA_DIR, f"gw{gw}.json")
         data["projected_total"] = projected_total(data["xi"])
+        proj_path = os.path.join(ROOT, "reports", f"GW{gw}-projections.json")
+        if os.path.exists(proj_path):  # written by the pipeline from GW6/7 on; older weeks don't have one
+            proj = json.load(open(proj_path, encoding="utf-8"))
+            top = {}
+            for p in proj["players"]:
+                if p.get("projected_points") is None:
+                    continue
+                top.setdefault(p["position"], [])
+                if len(top[p["position"]]) < 10:
+                    top[p["position"]].append({"name": p["web_name"], "club": p["team_short"], "price": p["price_m"],
+                                               "pp": round(p["projected_points"], 2), "ep_next": p["ep_next"]})
+            data["projections"] = top
         data["finished"] = gw in finished
         if api_ok and data["finished"]:
             add_actuals(data, fetch(f"{API}/event/{gw}/live/"), ids)

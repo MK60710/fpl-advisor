@@ -155,3 +155,32 @@ def test_write_report_creates_latest_and_archive_files(tmp_path):
     assert latest_path == str(reports_dir / "GW3.md")
     archived = list(archive_dir.glob("GW3-*.md"))
     assert len(archived) == 1
+
+
+def test_write_projections_saves_every_player_sorted_and_json_safe(tmp_path):
+    import json
+    import math
+
+    import numpy as np
+    import pandas as pd
+
+    from agents.report import write_projections
+
+    table = pd.DataFrame([
+        {"player_id": 1, "web_name": "Low", "team_short": "ARS", "position": "DEF", "price_m": 4.5, "status": "a",
+         "chance_of_playing_next_round": float("nan"), "minutes": np.int64(90), "starts": 1, "ep_next": 2.0,
+         "fixture_difficulty_next5": 3.0, "projected_points": np.float64(2.1), "news": "ignored"},
+        {"player_id": 2, "web_name": "High", "team_short": "MCI", "position": "FWD", "price_m": 15.0, "status": "a",
+         "chance_of_playing_next_round": 100.0, "minutes": 450, "starts": 5, "ep_next": 9.0,
+         "fixture_difficulty_next5": 2.4, "projected_points": 9.8, "news": ""},
+    ])
+    path = write_projections(7, table, reports_dir=str(tmp_path))
+
+    data = json.load(open(path))
+    assert path.endswith("GW7-projections.json")
+    assert data["gameweek"] == 7
+    assert [p["web_name"] for p in data["players"]] == ["High", "Low"]
+    assert data["players"][1]["chance_of_playing_next_round"] is None
+    assert data["players"][1]["minutes"] == 90 and isinstance(data["players"][1]["minutes"], int)
+    assert "news" not in data["players"][0]
+    assert not any(isinstance(v, float) and math.isnan(v) for p in data["players"] for v in p.values())

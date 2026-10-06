@@ -175,3 +175,39 @@ if __name__ == "__main__":
     rec, table = build_recommendation(current_gw=3, force_refresh=True)
     path = write_report(rec, table)
     print(f"Report written to {path}")
+
+
+PROJECTION_FIELDS = [
+    "player_id", "web_name", "team_short", "position", "price_m", "status",
+    "chance_of_playing_next_round", "minutes", "starts", "ep_next",
+    "fixture_difficulty_next5", "projected_points",
+]
+
+
+def write_projections(target_gw, player_table, reports_dir=REPORTS_DIR):
+    """Saves every player's pre-deadline projection to reports/GW{n}-projections.json.
+
+    Additive only: nothing reads this file back into the pick. It exists so the model can be
+    backtested honestly later (the public historical datasets don't carry real pre-match
+    projections) and so the website can show a projections table. Returns the path written."""
+    import json
+    from datetime import datetime, timezone
+
+    os.makedirs(reports_dir, exist_ok=True)
+    rows = []
+    for rec in player_table.to_dict("records"):
+        row = {}
+        for field in PROJECTION_FIELDS:
+            value = rec.get(field)
+            if hasattr(value, "item"):  # numpy scalar -> plain Python for json
+                value = value.item()
+            if isinstance(value, float) and value != value:  # NaN -> null
+                value = None
+            row[field] = value
+        rows.append(row)
+    rows.sort(key=lambda r: (r["projected_points"] is None, -(r["projected_points"] or 0)))
+    path = os.path.join(reports_dir, f"GW{target_gw}-projections.json")
+    with open(path, "w") as f:
+        json.dump({"gameweek": target_gw, "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                   "players": rows}, f, ensure_ascii=False, indent=1)
+    return path

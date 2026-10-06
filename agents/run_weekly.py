@@ -6,12 +6,13 @@ import csv
 import glob
 import os
 import re
+import sys
 import time
 from datetime import datetime, timezone
 
 from agents.data_agent import fetch_bootstrap
 from agents.recommend import build_recommendation
-from agents.report import REPORTS_DIR, write_report
+from agents.report import REPORTS_DIR, write_projections, write_report
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGS_DIR = os.path.join(PROJECT_ROOT, "logs")
@@ -109,6 +110,13 @@ def run_weekly(now_epoch=None, run_log_path=RUN_LOG_PATH, reports_dir=REPORTS_DI
     except Exception as exc:
         _log_heartbeat(_heartbeat_row(target_gw, "error", sources_failed=str(exc)[:200]), run_log_path=run_log_path)
         raise
+
+    # Additive: save every player's projection for backtesting and the website. A failure here
+    # must never cost the report or the run, so it's isolated and only noted on stderr.
+    try:
+        write_projections(target_gw, player_table, reports_dir=reports_dir)
+    except Exception as exc:  # noqa: BLE001 - deliberately broad, see above
+        print(f"projections file not written: {exc}", file=sys.stderr)
 
     sources_ok = [s for s, st in recommendation["source_status"].items() if st["status"] == "ok"]
     sources_failed = [s for s, st in recommendation["source_status"].items() if st["status"] != "ok"]

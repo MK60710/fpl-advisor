@@ -194,3 +194,20 @@ def test_run_weekly_logs_error_on_bootstrap_fetch_failure(tmp_path):
     assert len(rows) == 1
     assert rows[-1]["status"] == "error"
     assert "simulated DNS failure" in rows[-1]["sources_failed"]
+
+
+def test_projections_failure_never_breaks_the_run(tmp_path):
+    bootstrap = _bootstrap([_event(5, NOW + 1 * DAY)])
+    run_log = tmp_path / "run-log.csv"
+    fake_rec = {"target_gw": 5, "data_mode": "full", "source_status": {"fantasyfootballscout": {"status": "ok"}}}
+
+    with patch("agents.run_weekly.fetch_bootstrap", return_value=bootstrap), \
+         patch("agents.run_weekly.build_recommendation", return_value=(fake_rec, "fake_table")), \
+         patch("agents.run_weekly.write_report") as mock_write, \
+         patch("agents.run_weekly.write_projections", side_effect=RuntimeError("disk full")) as mock_proj:
+        result = run_weekly(now_epoch=NOW, run_log_path=str(run_log), reports_dir=str(tmp_path / "reports"))
+
+    mock_write.assert_called_once()
+    mock_proj.assert_called_once()
+    assert result == fake_rec
+    assert list(csv.DictReader(open(run_log)))[-1]["status"] == "ok"

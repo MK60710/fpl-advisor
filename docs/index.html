@@ -115,6 +115,13 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     </div>
   </div>
 
+  <section class="track" id="proj" hidden>
+    <h2>Top projections</h2>
+    <p class="sub">The ten highest projected players at each position before this gameweek's deadline. The optimizer picks from all of them under the budget and club limits.</p>
+    <div class="tabs" id="projTabs" role="group" aria-label="Position"></div>
+    <div class="tr-wrap"><table class="tr-table"><thead><tr><th>Player</th><th>Club</th><th>Price</th><th>Projected</th></tr></thead><tbody id="projBody"></tbody></table></div>
+  </section>
+
   <section class="track" id="track" hidden>
     <h2>Track record</h2>
     <p class="sub">How each pick actually scored, next to what the model projected and the average FPL manager that week. Real points come from the official FPL API, with the captain doubled. Bench auto-subs aren't counted.</p>
@@ -184,6 +191,19 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     var watch = $('watch'); watch.innerHTML = '';
     d.watchlist.forEach(function(p){ watch.appendChild(el('li', null, '<span class="k">' + p.pos + '</span><span class="n">' + esc(p.name) + '<small>' + p.club + ' · age ' + p.age + '</small></span><span class="v">' + p.owned.toFixed(1) + '% owned</span>')); });
     $('reportLink').href = 'https://github.com/MK60710/fpl-advisor/blob/main/' + d.report;
+    renderProjections(d.projections);
+  }
+
+  function renderProjections(pr){
+    var sec = $('proj');
+    if (!pr){ sec.hidden = true; return; }
+    var tabs = $('projTabs'); tabs.innerHTML = '';
+    function fill(pos){
+      [].forEach.call(tabs.children, function(b){ b.setAttribute('aria-pressed', b.dataset.pos === pos ? 'true' : 'false'); });
+      $('projBody').innerHTML = (pr[pos] || []).map(function(p){ return '<tr><td>' + esc(p.name) + '</td><td>' + p.club + '</td><td>\u00a3' + p.price.toFixed(1) + 'm</td><td>' + p.pp.toFixed(2) + '</td></tr>'; }).join('');
+    }
+    ['GKP', 'DEF', 'MID', 'FWD'].forEach(function(pos){ if (!pr[pos]) return; var b = el('button', null, pos); b.type = 'button'; b.dataset.pos = pos; b.addEventListener('click', function(){ fill(pos); }); tabs.appendChild(b); });
+    fill('MID'); sec.hidden = false;
   }
 
   function show(gw, idx){
