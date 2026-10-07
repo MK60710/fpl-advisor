@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>FPL Advisor</title>
 <meta name="description" content="This gameweek's Fantasy Premier League squad, picked by an optimizer from projected points. Recommendations only.">
@@ -177,19 +179,19 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
       d.xi.filter(function(p){ return p.pos === pos; }).forEach(function(p){
         var c = el('div', 'p'); c.setAttribute('title', p.name + ' (' + p.club + ', ' + p.pos + ') £' + p.price.toFixed(1) + 'm');
         var line = p.actual != null ? (p.pp.toFixed(1) + ' proj · ' + p.actual + ' pts') : (p.pp.toFixed(1) + ' pts · £' + p.price.toFixed(1) + 'm');
-        c.innerHTML = shirt(p.club, pos === 'GKP') + (p.tag ? '<span class="badge' + (p.tag === 'VC' ? ' vc' : '') + '">' + p.tag + '</span>' : '') +
+        c.innerHTML = shirt(p.club, pos === 'GKP') + (p.tag ? '<span class="badge' + (p.tag === 'VC' ? ' vc' : '') + '">' + esc(p.tag) + '</span>' : '') +
           '<span class="nm">' + esc(p.name) + '</span><span class="pp' + (p.actual != null ? ' done' : '') + '">' + line + '</span>';
         r.appendChild(c);
       });
       rows.appendChild(r);
     });
     var cap = d.xi.filter(function(p){ return p.tag === 'C'; })[0], vc = d.xi.filter(function(p){ return p.tag === 'VC'; })[0];
-    function capCard(label, p){ return '<div><span>' + label + '</span><b>' + esc(p.name) + '</b><span>' + p.club + ' · ' + p.pp.toFixed(2) + ' projected' + (p.actual != null ? ', scored ' + p.actual : '') + '</span></div>'; }
+    function capCard(label, p){ return '<div><span>' + label + '</span><b>' + esc(p.name) + '</b><span>' + esc(p.club) + ' · ' + p.pp.toFixed(2) + ' projected' + (p.actual != null ? ', scored ' + p.actual : '') + '</span></div>'; }
     $('cap').innerHTML = (cap ? capCard('Captain (points doubled)', cap) : '') + (vc ? capCard('Vice-captain', vc) : '');
     var bench = $('bench'); bench.innerHTML = '';
-    d.bench.forEach(function(p){ bench.appendChild(el('li', null, '<span class="k">' + (p.slot === 'GK' ? 'GK' : p.slot) + '</span><span class="n">' + esc(p.name) + '<small>' + p.club + ' · ' + p.pos + '</small></span><span class="v">' + (p.actual != null ? p.actual + ' pts' : p.pp.toFixed(1) + ' proj') + '</span>')); });
+    d.bench.forEach(function(p){ bench.appendChild(el('li', null, '<span class="k">' + esc(p.slot === 'GK' ? 'GK' : p.slot) + '</span><span class="n">' + esc(p.name) + '<small>' + esc(p.club) + ' · ' + esc(p.pos) + '</small></span><span class="v">' + (p.actual != null ? p.actual + ' pts' : p.pp.toFixed(1) + ' proj') + '</span>')); });
     var watch = $('watch'); watch.innerHTML = '';
-    d.watchlist.forEach(function(p){ watch.appendChild(el('li', null, '<span class="k">' + p.pos + '</span><span class="n">' + esc(p.name) + '<small>' + p.club + ' · age ' + p.age + '</small></span><span class="v">' + p.owned.toFixed(1) + '% owned</span>')); });
+    d.watchlist.forEach(function(p){ watch.appendChild(el('li', null, '<span class="k">' + esc(p.pos) + '</span><span class="n">' + esc(p.name) + '<small>' + esc(p.club) + ' · age ' + esc(p.age) + '</small></span><span class="v">' + p.owned.toFixed(1) + '% owned</span>')); });
     $('reportLink').href = 'https://github.com/MK60710/fpl-advisor/blob/main/' + d.report;
     renderProjections(d.projections);
   }
@@ -200,7 +202,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
     var tabs = $('projTabs'); tabs.innerHTML = '';
     function fill(pos){
       [].forEach.call(tabs.children, function(b){ b.setAttribute('aria-pressed', b.dataset.pos === pos ? 'true' : 'false'); });
-      $('projBody').innerHTML = (pr[pos] || []).map(function(p){ return '<tr><td>' + esc(p.name) + '</td><td>' + p.club + '</td><td>\u00a3' + p.price.toFixed(1) + 'm</td><td>' + p.pp.toFixed(2) + '</td></tr>'; }).join('');
+      $('projBody').innerHTML = (pr[pos] || []).map(function(p){ return '<tr><td>' + esc(p.name) + '</td><td>' + esc(p.club) + '</td><td>\u00a3' + p.price.toFixed(1) + 'm</td><td>' + p.pp.toFixed(2) + '</td></tr>'; }).join('');
     }
     ['GKP', 'DEF', 'MID', 'FWD'].forEach(function(pos){ if (!pr[pos]) return; var b = el('button', null, pos); b.type = 'button'; b.dataset.pos = pos; b.addEventListener('click', function(){ fill(pos); }); tabs.appendChild(b); });
     fill('MID'); sec.hidden = false;
