@@ -7,20 +7,20 @@
   "data_mode": "official_only",
   "xi": [
     {
-      "name": "Scott",
-      "club": "BOU",
-      "pos": "MID",
-      "price": 6.1,
-      "pp": 7.04,
-      "tag": null,
-      "slot": null
-    },
-    {
       "name": "Schade",
       "club": "BRE",
       "pos": "MID",
       "price": 6.2,
-      "pp": 8.88,
+      "pp": 11.83,
+      "tag": "VC",
+      "slot": null
+    },
+    {
+      "name": "De Cuyper",
+      "club": "BHA",
+      "pos": "DEF",
+      "price": 5.0,
+      "pp": 8.15,
       "tag": null,
       "slot": null
     },
@@ -28,17 +28,44 @@
       "name": "Groß",
       "club": "BHA",
       "pos": "MID",
-      "price": 5.8,
-      "pp": 11.95,
+      "price": 5.9,
+      "pp": 16.71,
       "tag": "C",
+      "slot": null
+    },
+    {
+      "name": "Kostoulas",
+      "club": "BHA",
+      "pos": "FWD",
+      "price": 5.6,
+      "pp": 8.78,
+      "tag": null,
       "slot": null
     },
     {
       "name": "Tarkowski",
       "club": "EVE",
       "pos": "DEF",
-      "price": 6.1,
-      "pp": 9.11,
+      "price": 6.2,
+      "pp": 10.89,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Belloumi",
+      "club": "HUL",
+      "pos": "MID",
+      "price": 5.1,
+      "pp": 7.9,
+      "tag": null,
+      "slot": null
+    },
+    {
+      "name": "Davis",
+      "club": "IPS",
+      "pos": "DEF",
+      "price": 4.0,
+      "pp": 8.0,
       "tag": null,
       "slot": null
     },
@@ -47,7 +74,7 @@
       "club": "LEE",
       "pos": "DEF",
       "price": 4.6,
-      "pp": 7.65,
+      "pp": 8.52,
       "tag": null,
       "slot": null
     },
@@ -56,25 +83,16 @@
       "club": "LIV",
       "pos": "GKP",
       "price": 5.5,
-      "pp": 6.14,
+      "pp": 8.33,
       "tag": null,
       "slot": null
     },
     {
-      "name": "Isak",
+      "name": "Virgil",
       "club": "LIV",
-      "pos": "FWD",
-      "price": 9.1,
-      "pp": 7.62,
-      "tag": null,
-      "slot": null
-    },
-    {
-      "name": "Gvardiol",
-      "club": "MCI",
       "pos": "DEF",
-      "price": 5.7,
-      "pp": 6.91,
+      "price": 6.5,
+      "pp": 7.84,
       "tag": null,
       "slot": null
     },
@@ -83,68 +101,50 @@
       "club": "MCI",
       "pos": "FWD",
       "price": 15.6,
-      "pp": 9.66,
-      "tag": "VC",
-      "slot": null
-    },
-    {
-      "name": "B.Fernandes",
-      "club": "MUN",
-      "pos": "MID",
-      "price": 11.9,
-      "pp": 7.84,
-      "tag": null,
-      "slot": null
-    },
-    {
-      "name": "Hall",
-      "club": "NEW",
-      "pos": "DEF",
-      "price": 5.3,
-      "pp": 7.42,
+      "pp": 7.88,
       "tag": null,
       "slot": null
     }
   ],
   "bench": [
     {
-      "name": "Tzolakis",
-      "club": "HUL",
+      "name": "Raya",
+      "club": "ARS",
       "pos": "GKP",
-      "price": 4.7,
-      "pp": 5.94,
+      "price": 6.1,
+      "pp": 7.5,
       "tag": null,
       "slot": "GK"
     },
     {
-      "name": "Davis",
-      "club": "IPS",
-      "pos": "DEF",
-      "price": 4.0,
-      "pp": 5.8,
+      "name": "Semenyo",
+      "club": "MCI",
+      "pos": "MID",
+      "price": 8.4,
+      "pp": 6.33,
       "tag": null,
       "slot": "1"
     },
     {
-      "name": "Yalcouyé",
-      "club": "BHA",
-      "pos": "MID",
-      "price": 4.5,
-      "pp": 4.44,
+      "name": "Brobbey",
+      "club": "SUN",
+      "pos": "FWD",
+      "price": 5.7,
+      "pp": 5.42,
       "tag": null,
       "slot": "2"
     },
     {
-      "name": "Simms",
-      "club": "COV",
-      "pos": "FWD",
-      "price": 4.9,
-      "pp": 4.2,
+      "name": "Saka",
+      "club": "ARS",
+      "pos": "MID",
+      "price": 9.6,
+      "pp": 5.37,
       "tag": null,
       "slot": "3"
     }
   ],
-  "risk_flags": "None — every starter shows 100% chance of playing with no negative research signal.",
+  "risk_flags": "- **Semenyo** (MCI): chance of playing next round: 75.0%\n- **Brobbey** (SUN): chance of playing next round: 75.0%",
   "watchlist": [
     {
       "name": "Yalcouyé",
@@ -153,7 +153,7 @@
       "age": 20,
       "price": 4.5,
       "xgi90": 0.73,
-      "owned": 4.0
+      "owned": 3.9
     },
     {
       "name": "Manzambi",
@@ -171,7 +171,7 @@
       "age": 22,
       "price": 6.0,
       "xgi90": 0.61,
-      "owned": 3.9
+      "owned": 4.2
     },
     {
       "name": "Andrés",
@@ -189,10 +189,300 @@
       "age": 22,
       "price": 5.5,
       "xgi90": 0.49,
-      "owned": 3.5
+      "owned": 3.7
     }
   ],
   "report": "reports/GW6.md",
-  "projected_total": 102.17,
+  "projected_total": 121.54,
+  "projections": {
+    "MID": [
+      {
+        "name": "Groß",
+        "club": "BHA",
+        "price": 5.9,
+        "pp": 16.71,
+        "ep_next": 15.5
+      },
+      {
+        "name": "Schade",
+        "club": "BRE",
+        "price": 6.2,
+        "pp": 11.83,
+        "ep_next": 12.0
+      },
+      {
+        "name": "Belloumi",
+        "club": "HUL",
+        "price": 5.1,
+        "pp": 7.9,
+        "ep_next": 8.5
+      },
+      {
+        "name": "Buendía",
+        "club": "AVL",
+        "price": 5.9,
+        "pp": 7.45,
+        "ep_next": 7.0
+      },
+      {
+        "name": "Semenyo",
+        "club": "MCI",
+        "price": 8.4,
+        "pp": 6.33,
+        "ep_next": 7.5
+      },
+      {
+        "name": "Okafor",
+        "club": "LEE",
+        "price": 5.8,
+        "pp": 5.98,
+        "ep_next": 6.0
+      },
+      {
+        "name": "Cunha",
+        "club": "MUN",
+        "price": 7.9,
+        "pp": 5.92,
+        "ep_next": 6.0
+      },
+      {
+        "name": "Ampadu",
+        "club": "LEE",
+        "price": 5.4,
+        "pp": 5.88,
+        "ep_next": 6.0
+      },
+      {
+        "name": "McGinn",
+        "club": "AVL",
+        "price": 5.4,
+        "pp": 5.86,
+        "ep_next": 6.0
+      },
+      {
+        "name": "Barnes",
+        "club": "NEW",
+        "price": 6.1,
+        "pp": 5.55,
+        "ep_next": 5.5
+      }
+    ],
+    "DEF": [
+      {
+        "name": "Tarkowski",
+        "club": "EVE",
+        "price": 6.2,
+        "pp": 10.89,
+        "ep_next": 11.0
+      },
+      {
+        "name": "Bogle",
+        "club": "LEE",
+        "price": 4.6,
+        "pp": 8.52,
+        "ep_next": 10.0
+      },
+      {
+        "name": "De Cuyper",
+        "club": "BHA",
+        "price": 5.0,
+        "pp": 8.15,
+        "ep_next": 8.5
+      },
+      {
+        "name": "Davis",
+        "club": "IPS",
+        "price": 4.0,
+        "pp": 8.0,
+        "ep_next": 8.0
+      },
+      {
+        "name": "Virgil",
+        "club": "LIV",
+        "price": 6.5,
+        "pp": 7.84,
+        "ep_next": 8.0
+      },
+      {
+        "name": "Gvardiol",
+        "club": "MCI",
+        "price": 5.7,
+        "pp": 7.39,
+        "ep_next": 7.5
+      },
+      {
+        "name": "Branthwaite",
+        "club": "EVE",
+        "price": 5.5,
+        "pp": 6.93,
+        "ep_next": 7.0
+      },
+      {
+        "name": "Hall",
+        "club": "NEW",
+        "price": 5.3,
+        "pp": 6.89,
+        "ep_next": 6.5
+      },
+      {
+        "name": "Vuskovic",
+        "club": "BHA",
+        "price": 5.0,
+        "pp": 6.76,
+        "ep_next": 7.0
+      },
+      {
+        "name": "Muharemović",
+        "club": "LEE",
+        "price": 5.0,
+        "pp": 6.37,
+        "ep_next": 6.5
+      }
+    ],
+    "FWD": [
+      {
+        "name": "Kostoulas",
+        "club": "BHA",
+        "price": 5.6,
+        "pp": 8.78,
+        "ep_next": 10.0
+      },
+      {
+        "name": "Haaland",
+        "club": "MCI",
+        "price": 15.6,
+        "pp": 7.88,
+        "ep_next": 7.5
+      },
+      {
+        "name": "Emersonn",
+        "club": "IPS",
+        "price": 5.5,
+        "pp": 6.45,
+        "ep_next": 7.0
+      },
+      {
+        "name": "Calvert-Lewin",
+        "club": "LEE",
+        "price": 6.0,
+        "pp": 6.05,
+        "ep_next": 6.0
+      },
+      {
+        "name": "Brobbey",
+        "club": "SUN",
+        "price": 5.7,
+        "pp": 5.42,
+        "ep_next": 6.8
+      },
+      {
+        "name": "João Pedro",
+        "club": "CHE",
+        "price": 7.7,
+        "pp": 4.78,
+        "ep_next": 4.5
+      },
+      {
+        "name": "Strand Larsen",
+        "club": "CRY",
+        "price": 6.0,
+        "pp": 4.59,
+        "ep_next": 5.0
+      },
+      {
+        "name": "Welbeck",
+        "club": "CHE",
+        "price": 5.9,
+        "pp": 4.49,
+        "ep_next": 1.5
+      },
+      {
+        "name": "Barry",
+        "club": "EVE",
+        "price": 5.7,
+        "pp": 4.2,
+        "ep_next": 4.0
+      },
+      {
+        "name": "Igor Jesus",
+        "club": "NFO",
+        "price": 5.8,
+        "pp": 4.16,
+        "ep_next": 4.0
+      }
+    ],
+    "GKP": [
+      {
+        "name": "A.Becker",
+        "club": "LIV",
+        "price": 5.5,
+        "pp": 8.33,
+        "ep_next": 8.5
+      },
+      {
+        "name": "Raya",
+        "club": "ARS",
+        "price": 6.1,
+        "pp": 7.5,
+        "ep_next": 7.5
+      },
+      {
+        "name": "Pickford",
+        "club": "EVE",
+        "price": 5.5,
+        "pp": 6.93,
+        "ep_next": 7.0
+      },
+      {
+        "name": "Verbruggen",
+        "club": "BHA",
+        "price": 4.5,
+        "pp": 6.86,
+        "ep_next": 7.0
+      },
+      {
+        "name": "Trafford",
+        "club": "LEE",
+        "price": 5.0,
+        "pp": 6.37,
+        "ep_next": 6.5
+      },
+      {
+        "name": "Leno",
+        "club": "FUL",
+        "price": 4.5,
+        "pp": 6.18,
+        "ep_next": 6.0
+      },
+      {
+        "name": "Rushworth",
+        "club": "COV",
+        "price": 4.5,
+        "pp": 5.55,
+        "ep_next": 5.5
+      },
+      {
+        "name": "Donnarumma",
+        "club": "MCI",
+        "price": 5.5,
+        "pp": 4.5,
+        "ep_next": 4.5
+      },
+      {
+        "name": "Kinsky",
+        "club": "TOT",
+        "price": 4.5,
+        "pp": 4.5,
+        "ep_next": 4.5
+      },
+      {
+        "name": "Kelleher",
+        "club": "BRE",
+        "price": 5.0,
+        "pp": 4.46,
+        "ep_next": 4.5
+      }
+    ]
+  },
   "finished": false
 }
