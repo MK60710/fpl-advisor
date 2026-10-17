@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T22:40Z",
+  "updated": "2026-10-17T03:03Z",
   "gameweeks": [
     {
       "gameweek": 3,
@@ -27,8 +27,16 @@
     },
     {
       "gameweek": 6,
-      "finished": false,
+      "finished": true,
       "projected_total": 121.54,
+      "actual_total": 47,
+      "average_manager": 58,
+      "highest": 131
+    },
+    {
+      "gameweek": 7,
+      "finished": false,
+      "projected_total": 112.96,
       "actual_total": null,
       "average_manager": null,
       "highest": null

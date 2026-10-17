@@ -13,7 +13,9 @@
       "price": 6.2,
       "pp": 11.83,
       "tag": "VC",
-      "slot": null
+      "slot": null,
+      "actual": 1,
+      "minutes": 51
     },
     {
       "name": "De Cuyper",
@@ -22,7 +24,9 @@
       "price": 5.0,
       "pp": 8.15,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 15,
+      "minutes": 67
     },
     {
       "name": "Groß",
@@ -31,7 +35,9 @@
       "price": 5.9,
       "pp": 16.71,
       "tag": "C",
-      "slot": null
+      "slot": null,
+      "actual": 6,
+      "minutes": 90
     },
     {
       "name": "Kostoulas",
@@ -40,7 +46,9 @@
       "price": 5.6,
       "pp": 8.78,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 1,
+      "minutes": 59
     },
     {
       "name": "Tarkowski",
@@ -49,7 +57,9 @@
       "price": 6.2,
       "pp": 10.89,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 3,
+      "minutes": 90
     },
     {
       "name": "Belloumi",
@@ -58,7 +68,9 @@
       "price": 5.1,
       "pp": 7.9,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 6,
+      "minutes": 26
     },
     {
       "name": "Davis",
@@ -67,7 +79,9 @@
       "price": 4.0,
       "pp": 8.0,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 1,
+      "minutes": 90
     },
     {
       "name": "Bogle",
@@ -76,7 +90,9 @@
       "price": 4.6,
       "pp": 8.52,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 1,
+      "minutes": 85
     },
     {
       "name": "A.Becker",
@@ -85,7 +101,9 @@
       "price": 5.5,
       "pp": 8.33,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 1,
+      "minutes": 90
     },
     {
       "name": "Virgil",
@@ -94,7 +112,9 @@
       "price": 6.5,
       "pp": 7.84,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 0,
+      "minutes": 90
     },
     {
       "name": "Haaland",
@@ -103,7 +123,9 @@
       "price": 15.6,
       "pp": 7.88,
       "tag": null,
-      "slot": null
+      "slot": null,
+      "actual": 6,
+      "minutes": 79
     }
   ],
   "bench": [
@@ -114,7 +136,9 @@
       "price": 6.1,
       "pp": 7.5,
       "tag": null,
-      "slot": "GK"
+      "slot": "GK",
+      "actual": 3,
+      "minutes": 90
     },
     {
       "name": "Semenyo",
@@ -123,7 +147,9 @@
       "price": 8.4,
       "pp": 6.33,
       "tag": null,
-      "slot": "1"
+      "slot": "1",
+      "actual": 3,
+      "minutes": 90
     },
     {
       "name": "Brobbey",
@@ -132,7 +158,9 @@
       "price": 5.7,
       "pp": 5.42,
       "tag": null,
-      "slot": "2"
+      "slot": "2",
+      "actual": 0,
+      "minutes": 0
     },
     {
       "name": "Saka",
@@ -141,7 +169,9 @@
       "price": 9.6,
       "pp": 5.37,
       "tag": null,
-      "slot": "3"
+      "slot": "3",
+      "actual": 2,
+      "minutes": 90
     }
   ],
   "risk_flags": "- **Semenyo** (MCI): chance of playing next round: 75.0%\n- **Brobbey** (SUN): chance of playing next round: 75.0%",
@@ -484,5 +514,9 @@
       }
     ]
   },
-  "finished": false
+  "finished": true,
+  "actual_total": 47,
+  "captain_scored_for": "Groß",
+  "average_manager": 58,
+  "highest": 131
 }
